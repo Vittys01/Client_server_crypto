@@ -52,7 +52,7 @@ const publicKeyB = fs.readFileSync('publicKeyB.pem', 'utf-8');
 // Objeto JSON a cifrar
 const originalObject = {
     uuid:"e8c40a8d-4fba-4afb-bee5-0029141775dc",
-    fuction:"susbtract money",
+    name: "John Doe"
 };
 
 // Cifrado asimétrico usando la clave pública
@@ -62,5 +62,5 @@ const encryptedBuffer = crypto.publicEncrypt({
     oaepHash: 'sha256',
 }, Buffer.from(JSON.stringify(originalObject), 'utf-8'));
 
-fs.writeFileSync('encryptedMessageFromA.txt', encryptedBuffer, 'utf-8');
+fs.writeFileSync('encryptedMessageFromA.txt', encryptedBuffer.toString('base64'));
 console.log('Objeto cifrado desde Servidor A:\n', encryptedBuffer.toString('base64'));
